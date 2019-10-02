@@ -30,5 +30,12 @@ public class AlunoDAO {
         }
             return alunos;
     }
+    public long inserirLogin (Aluno aluno){
+        ContentValues values = new ContentValues();
+        values.put("email_aluno", aluno.getEmail_aluno());
+        values.put("senha_aluno", aluno.getSenha_aluno());
+        return banco.insert("aluno",null,values);
+
+    }
 
 }

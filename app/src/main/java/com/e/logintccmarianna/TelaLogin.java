@@ -13,8 +13,9 @@ import java.util.List;
 public class TelaLogin extends AppCompatActivity {
 
     private EditText inpLogin,inpSenha;
-    private Button btnEntrar,btnCadastrar,btnListarAlunos,btnSair;
+    private Button btnEntrar,btnCadastrar,btnListarAlunos,btnSair,btnInserirAlunos;
     private AlunoDAO dao;
+    private Aluno aluno;
     private List<Aluno> alunos;
     private List<Aluno> alunosFiltrados = new ArrayList<>();
 
@@ -26,6 +27,7 @@ public class TelaLogin extends AppCompatActivity {
         btnEntrar = findViewById(R.id.btnEntrar);
         btnCadastrar = findViewById(R.id.btnCadastrar);
         btnSair = findViewById(R.id.btnSair);
+        btnInserirAlunos =findViewById(R.id.btnInserirAlunos);
         btnListarAlunos= findViewById(R.id.btnListarAlunos);
         dao = new AlunoDAO(this);
         eventoClicks();
@@ -63,6 +65,26 @@ public class TelaLogin extends AppCompatActivity {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 alert("TELA DE CADASTRO EM CONSTRUÇÃO !");
+            }
+        });
+        btnInserirAlunos.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String login = inpLogin.getText().toString();
+                String senha = inpSenha.getText().toString();
+                if (isCampoVazio(login)) {
+                    alert("FAVOR INFORMAR LOGIN");
+                } else if (isCampoVazio(senha)) {
+                    alert("FAVOR INFORMAR SENHA");
+                }else{
+                    Aluno a = new Aluno();
+                    a.setEmail_aluno(login);
+                    a.setSenha_aluno(senha);
+                    dao.inserirLogin(a);
+                    alert("ALUNO INSERIDO COM SUCESSO");
+                    Intent i = new Intent(getApplicationContext(),TelaLogin.class);
+                    startActivity(i);
+                    finish();
+                }
             }
         });
         btnSair.setOnClickListener(new View.OnClickListener() {
