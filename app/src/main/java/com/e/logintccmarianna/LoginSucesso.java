@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
+
 public class LoginSucesso extends AppCompatActivity {
     private Button btnSairLogIn;
 
@@ -26,6 +27,10 @@ public class LoginSucesso extends AppCompatActivity {
         });
     }
 }
+
+
+
+
 
 
 

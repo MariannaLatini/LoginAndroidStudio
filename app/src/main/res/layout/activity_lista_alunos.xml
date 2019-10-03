@@ -7,16 +7,28 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="#A3ADB0"
 android:orientation="vertical">
-   <ListView
-        android:id="@+id/lista_alunos"
+
+    <ListView
+        android:id="@+id/login_alunos"
+        android:layout_width="356dp"
+        android:layout_height="427dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        tools:ignore="MissingConstraints"></ListView>
+
+    <ListView
+        android:id="@+id/senha_aluno"
         android:layout_width="356dp"
         android:layout_height="427dp"
         tools:layout_editor_absoluteX="25dp"
         tools:layout_editor_absoluteY="171dp"
         tools:ignore="MissingConstraints">
     </ListView>
-
-    <Button
+   <Button
         android:id="@+id/btnVoltarLista"
         android:layout_width="102dp"
         android:layout_height="51dp"

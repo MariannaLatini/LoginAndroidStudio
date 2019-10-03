@@ -40,13 +40,13 @@ public class TelaLogin extends AppCompatActivity {
                 String login = inpLogin.getText().toString();
                 String senha = inpSenha.getText().toString();
                  if (isCampoVazio(login)) {
-                           alert("FAVOR INFORMAR LOGIN");
+                           alert("LOGIN NÃO PREENCHIDO !");
                      } else if (procuraLogin(login)) {
-                             alert("EMAIL NAO CADASTRADO !");
+                             alert("LOGIN NÃO CADASTRADO !");
                          } else if (isCampoVazio(senha)) {
-                                  alert("SENHA INVÁLIDA");
+                                  alert("SENHA INVÁLIDA !");
                               } else if (procuraSenha(login,senha)) {
-                                        alert("SENHA INVÁLIDA");;
+                                        alert("SENHA INVÁLIDA !");;
                                     } else {
                                            Intent i = new Intent(getApplicationContext(), LoginSucesso.class);
                                            startActivity(i);
@@ -72,15 +72,17 @@ public class TelaLogin extends AppCompatActivity {
                 String login = inpLogin.getText().toString();
                 String senha = inpSenha.getText().toString();
                 if (isCampoVazio(login)) {
-                    alert("FAVOR INFORMAR LOGIN");
+                    alert("LOGIN NÃO PREENCHIDO !");
+                } else if (!procuraLogin(login)) {
+                    alert("EMAIL JÁ CADASTRADO !");
                 } else if (isCampoVazio(senha)) {
-                    alert("FAVOR INFORMAR SENHA");
+                    alert("SENHA NÃO PREENCHIDA !");
                 }else{
                     Aluno a = new Aluno();
                     a.setEmail_aluno(login);
                     a.setSenha_aluno(senha);
                     dao.inserirLogin(a);
-                    alert("ALUNO INSERIDO COM SUCESSO");
+                    alert("ALUNO INSERIDO COM SUCESSO !");
                     Intent i = new Intent(getApplicationContext(),TelaLogin.class);
                     startActivity(i);
                     finish();
@@ -118,7 +120,8 @@ public class TelaLogin extends AppCompatActivity {
         alunos = dao.obterTodos();
         alunosFiltrados.clear();
         for(Aluno a : alunos){
-            if((a.getEmail_aluno().toLowerCase().equals(email.toLowerCase())) && (a.getSenha_aluno().toLowerCase().equals(senha.toLowerCase()))){
+            if((a.getEmail_aluno().toLowerCase().equals(email.toLowerCase())) &&
+                    (a.getSenha_aluno().toLowerCase().equals(senha.toLowerCase()))){
                 alunosFiltrados.add(a);
             }
         }
@@ -132,5 +135,4 @@ public class TelaLogin extends AppCompatActivity {
     private void alert(String s){
         Toast.makeText(TelaLogin.this,s,Toast.LENGTH_LONG).show();
     }
-
 }

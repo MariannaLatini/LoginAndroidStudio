@@ -3,7 +3,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import java.util.ArrayList;
@@ -20,11 +19,12 @@ public class ListaAlunos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
         btnVoltarLista = findViewById(R.id.btnVoltarLista);
-        listView = findViewById(R.id.lista_alunos);
+        listView = findViewById(R.id.login_alunos);
+        listView = findViewById(R.id.senha_aluno);
         dao = new AlunoDAO(this);
         alunos = dao.obterTodos();
         alunosFiltrados.addAll(alunos);
-        ArrayAdapter<Aluno> adaptador = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
+        AlunoAdapter adaptador = new AlunoAdapter(this, alunosFiltrados);
         listView.setAdapter(adaptador);
         eventoClicks();
     }
@@ -39,8 +39,7 @@ public class ListaAlunos extends AppCompatActivity {
             }
         });
     }
-
-
-
-
 }
+
+
+
